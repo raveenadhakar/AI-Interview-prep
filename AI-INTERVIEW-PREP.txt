@@ -12,54 +12,93 @@ Landing Page
 Hero section: AI interview coach tagline
 Demo video / GIF showing how it works
 Call-to-action for signup
-
 Authentication
 Email/password signup
 Google / GitHub / LinkedIn OAuth
 
-Onboarding Wizard:Ask user's target role, experience level, preferred companies, tech stack
 
-(B) Dashboard
-Personalized dashboard showing:
-Upcoming interview practice sessions
-Progress summary (coding, system design, behavioral)
-Streak tracker (gamification)
-AI tips of the day
-Quick start buttons for different interview types:
+B)Onboarding Wizard:Ask user's target role, experience level, preferred companies, tech stack(optional)
 
-Coding
 
-Behavioral
-
+C) Dashboard UI Flow
+Dashboard Landing
+Shows progress, streaks, tips (as before)
+Button: “Start Test / Interview”
+Step 1: Select Interview Type
+Options (buttons/cards):
+Coding (DSA)
+Core CS Subjects (OS, DBMS, CN…)
 System Design
+Behavioral / HR
+User clicks one → moves to next step
+Step 2: Select Target Companies
+Multi-select dropdown or checkbox list:
+Google, Amazon, Microsoft, Meta, etc.
+This will tailor questions / AI mock interview style
+Step 3: Select Difficulty Level
+Options:
+Easy / Medium / Hard
+Could also be adaptive later (AI adjusts based on performance)
+Step 4: Additional Options (Optional)
+Time limit
+Voice mode (answer verbally)
+Mock vs Practice mode
+Step 5: Start Interview
+Dashboard launches the selected interview module
+Save all selections in MongoDB under user session
+AI prepares questions based on the selections
 
-Mock Interview with AI
 
-(C) Coding Interview Section
-AI Question Generator
-Generates DSA questions based on difficulty & topics
-Code Editor (Monaco Editor)
-Language selection (JS, Python, Java, etc.)
-Test cases with instant AI feedback
+D) Flow from Dashboard → Coding Interview Page
+User clicks Start Interview on Dashboard.
+Pre-interview wizard collects:
+Interview type (Coding / Core CS / System Design)
+Topics / difficulty
+Target companies
+User submits → backend generates a question set based on selections.
+User lands on Coding Interview Page:
+Editor (Monaco Editor) for coding
+MCQs / one-word questions appear as cards
+Timer starts
+Webcam stream starts (for “interview simulation”)
+Voice recording (optional) can capture explanations
 
+E) Coding Interview Page Components
+ Question Display
+Dynamic Question Type:
+MCQ: options with single/multiple select
+Coding Problem: editor + “Run/Test” buttons
+Short / One-word Answer: input box
+Each question has:
+Topic / difficulty label
+Hint button → AI gives incremental hints
+ Code Editor
+Monaco Editor
+Language selection dropdown (JS, Python, Java, etc.)
+Run / Submit button
+Backend evaluates code using test cases
+AI provides feedback: success, errors explained in plain English
+TIme tracking:
+Countdown timer for each question
+Shows elapsed time to simulate real interview stress
+Voice Feedback
+User can speak their approach for coding or explanation
+AI listens → scores explanation clarity, logic, structure
+Optional: transcript appears on the side
+Webcam / Nervousness Detection
+Webcam live feed (embedded in top corner)
+
+Optional AI analyzes:
+Eye movement
+Hesitation / facial cues
+Voice shakiness
+Feedback displayed after question completion (e.g., “You hesitated here, try explaining more clearly”)
 Hints System
-
-AI gives progressively detailed hints
-Voice mode (user speaks their approach, AI gives feedback on explanation clarity)
-Time tracking to simulate real interview stress
-(D) Behavioral Interview Section
-AI as Interviewer
-AI asks HR-style and behavioral questions via voice
-User responds via mic
-AI scores on confidence, structure, and relevance
-STAR Method Coach
-AI breaks feedback into Situation, Task, Action, Result
-
-(E) System Design Section
-Draw tool for architecture diagrams
-AI prompts for a system design problem
-User explains design verbally & visually
-AI analyzes scalability, fault tolerance, etc., and suggests improvements
+Progressive hints:
+Minimal hint (one line suggestion)
+More detailed hint (step-by-step guidance)
+Full solution / approach (only if user still struggles)
+User clicks Hint button to reveal each level
 
 (F) Analytics & Progress Tracking
 Heatmap of daily practice activity
@@ -75,7 +114,7 @@ User pastes JD → AI highlights required skills & suggests projects to build
 Peer Mock Interview
 Match with other users for live practice
 
-3. Unique Features That Can Set You Apart
+H). Unique Features That Can Set You Apart
 Most interview prep apps stop at Q&A. Here’s how you can go beyond existing tools:
 "Nervousness Detector"
 Uses webcam + AI to detect hesitation, eye movement, voice shakiness.
